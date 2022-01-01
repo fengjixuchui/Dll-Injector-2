@@ -1,0 +1,25 @@
+@startuml Dll-Injector
+
+interface Injector {
+    +Inject()
+}
+
+class RunningInjector {
+    -win_title: string
+    -dll_path: string
+}
+
+Injector <|.. RunningInjector
+
+class StartupInjector {
+    -proc_path: string
+    -dll_path: string
+
+    +Running() : bool
+    +GetHandle() : optional<PROCESS_INFORMATION>
+    +Terminate()
+}
+
+Injector <|.. StartupInjector
+
+@enduml
